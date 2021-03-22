@@ -1,0 +1,135 @@
+{% extends 'Public/base.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper" style="min-height: 1329.44px;">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Update User</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="/deshboard">Home</a></li>
+						<li class="breadcrumb-item active">Create User</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- End Blog Header -->
+	<!-- ======= SingUp Section ======= -->
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-6 mx-auto my-3 shadow-lg p-3 mb-5 border rounded">
+				<div class="card">
+					<div class="card-body">
+						{% comment %} <div class="row">
+							<div class="col">
+								<center>
+									<img width="150px" src="{% static 'assets/img/icon/generaluser.png' %}" />
+								</center>
+							</div>
+						</div> {% endcomment %}
+						<div class="row">
+							<div class="col">
+								<center>
+									<h3><b>Update Users</b></h3>
+								</center>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								{% for message in messages %}
+								<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									<strong>Message:! </strong> {{message}}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<hr />
+							</div>
+						</div>
+						<form action="/update/{{users.id}}" method="post">
+							{% csrf_token %}
+							<div class="form-group col-md-6">
+								<label><b>Modules:</b></label>
+								<select class="form-control select2bs4" style="width: 100%;" name="module">
+									<option selected="selected">Select</option>
+									{% for module in module %}
+									<option value="{{module.module_id}}">{{module.module_name}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label><b>Username:</b></label>
+								<input type="text" class="form-control" id="username" name="username"
+									placeholder="Choose a unique username (Lowercase & Alphanumeric)"
+									value="{{users.username}}" required />
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label><b>First Name:</b></label>
+									<input type="text" class="form-control" id="fname" name="first_name"
+										placeholder="First Name" value="{{users.first_name}}" required />
+								</div>
+								<div class="form-group col-md-4">
+									<label><b>Middle Name:</b></label>
+									<input type="text" class="form-control" id="lname" name="mid_name"
+										placeholder="Middle Name" value="{{users.mid_name}}" required />
+								</div>
+								<div class="form-group col-md-4">
+									<label><b>Last Name:</b></label>
+									<input type="text" class="form-control" id="lname" name="last_name"
+										placeholder="Last Name" value="{{users.last_name}}" required />
+								</div>
+							</div>
+							<div class="form-group">
+								<label><b>Email address:</b></label>
+								<input type="email" class="form-control" id="email" name="email"
+									placeholder="Enter Your Email" value="{{users.email}}" required />
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label><b>Phone:</b></label>
+									<input type="text" class="form-control" id="fname" name="phone"
+										placeholder="Enter Your Phone" value="{{users.phone}}" required />
+								</div>
+								<div class="form-group col-md-6">
+									<label><b>Date of Birth:</b></label>
+									<input type="text" class="form-control" id="lname" name="dob"
+										placeholder="20/08/2000" value="{{users.dob}}" required />
+								</div>
+							</div>
+							<div class="form-group">
+								<label><b>Choose a password:</b></label>
+								<input type="text" class="form-control" id="password" name="password"
+									placeholder="Choose a password" value={{users.password}} required />
+							</div>
+							<div class="form-group">
+								<label><b>City:</b></label>
+								<input type="text" class="form-control" id="password" name="city"
+									placeholder="Enter Your City" value="{{users.city}}" required />
+							</div>
+							<div class="form-group">
+								<label><b>Country:</b></label>
+								<input type="text" class="form-control" id="password" name="country"
+									placeholder="Enter Your Country" value="{{users.country}}" required />
+							</div>
+							<button type="submit" class="btn-lg btn-primary">
+								Update
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

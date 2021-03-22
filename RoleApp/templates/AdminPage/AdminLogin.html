@@ -1,0 +1,90 @@
+{% extends 'Public/base.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper" style="min-height: 1329.44px;">
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Create User</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="/deshboard">Home</a></li>
+						<li class="breadcrumb-item active">User Login</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- End Blog Header -->
+	<!-- ======= SingUp Section ======= -->
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-6 mx-auto my-3 shadow-lg p-3 mb-5 border rounded">
+				<div class="card">
+					<div class="card-body">
+						{% comment %} <div class="row">
+							<div class="col">
+								<center>
+									<img width="150px" src="{% static 'assets/img/icon/generaluser.png' %}" />
+								</center>
+							</div>
+						</div> {% endcomment %}
+						<div class="row">
+							<div class="col">
+								<center>
+									<h3><b>Admin Login</b></h3>
+								</center>
+							</div>
+						</div>
+						{% if error %}
+								<div class="alert alert-danger" role="alert">
+								  {{error}}
+								</div>
+								{% endif %}
+						<div class="row">
+							<div class="col">
+								{% for message in messages %}
+								<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									<strong>Message:! </strong> {{message}}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<hr />
+							</div>
+						</div>
+						<form action="/AdminLogin" method="post">
+							{% csrf_token %}
+							<div class="form-group">
+								<label><b>Email or Username:</b></label>
+								<input type="text" class="form-control" id="username" name="email"
+									placeholder="Enter Your Username" required />
+							</div>
+							<div class="form-group">
+								<label><b>Password:</b></label>
+								<input type="text" class="form-control" id="username" name="password"
+									placeholder="Enter Your Password" required />
+							</div>
+							
+							<button type="submit" class="btn-lg btn-primary">
+								Sign Up
+							</button>
+							<div class="float-right mt-5">
+								Already have a Account ? <a href="/contact"><b>Login</b></a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}
